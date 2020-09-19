@@ -6,7 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
-# Ignore .ini files
+# .vscode
+*.vscode/
+
+# .ini files
 *.ini
 
 # Distribution / packaging
