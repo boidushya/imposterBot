@@ -94,8 +94,8 @@ class Bot:
 
 	　　ﾟ　　　.　　　. ,　　　　.　 .
 	"""]
-
-		return random.choice(choice)
+		botTag = "\n---\n<sub><sup>Beep boop I'm a bot. Also I'm the imposter ok bye. Made by u/boidushya</sup></sub>"
+		return random.choice(choice)+botTag
 
 if __name__ == "__main__":
 	bot = Bot()
