@@ -5,17 +5,19 @@ import time
 import json
 import os
 import re
+import logging
 
 class ModeError(Exception):
 	pass
 
 class Bot:
 	def __init__(self,name="imposterBot"):
+		logging.basicConfig(filename="bot.log", filemode="w", format="%(asctime)s:%(levelname)s => %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
 		self.reddit = praw.Reddit(name)
 		self.start()
 
 	def _getUser(self,message):
-		regex = r"(?s).*(u\/\w+).*(sus|vent(ed|s)?|imposter).*"
+		regex = r"(?s).*(u\/[a-zA-Z0-9_-]+).*(\ssus|\svent(ed|s)?|\simpost(er|or)).*"
 		match = re.match(regex, message,re.IGNORECASE)
 		if match != None:
 			return match.group(1)
@@ -39,7 +41,7 @@ class Bot:
 			raise ModeError(f"Invalid mode: {mode}")
 
 	def _search(self):
-		for results in self.reddit.subreddit("test").comments():
+		for results in self.reddit.subreddit("all").comments():
 			previous_id = self._manipC("r")
 			body = results.body
 			body = body.lower()
@@ -48,17 +50,17 @@ class Bot:
 				return
 			userName = self._getUser(body)
 			if userName != None:
-				print(f"Found comment with body: {body} by {results.author.name}")
+				logging.info(f"Found comment with body:\n {body}\n by {results.author.name}")
 				try:
 					results.reply(self.getResp(userName))
 					self._manipC("w", comment_id)
 				except Exception as e:
-					print(str(e))
+					logging.error("Exception: ", exc_info=True)
 					break
 
 	def start(self):
 		self._manipC("i")
-		print("Init complete! Looking for comments...")
+		logging.info("Initialization complete! Looking for comments...")
 		while True:
 			self._search()
 			time.sleep(2)
