@@ -12,7 +12,7 @@ class ModeError(Exception):
 
 class Bot:
 	def __init__(self,name="imposterBot"):
-		logging.basicConfig(filename="bot.log", filemode="w", format="%(asctime)s:%(levelname)s => %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
+		logging.basicConfig(filename="bot.log", filemode="a", format="%(asctime)s:%(levelname)s => %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
 		self.reddit = praw.Reddit(name)
 		self.start()
 
