@@ -63,7 +63,7 @@ class Bot:
 		logging.info("Initialization complete! Looking for comments...")
 		while True:
 			self._search()
-			time.sleep(2)
+			time.sleep(1)
 
 	def getResp(self,userName):
 		fChoice = random.randint(1, 2)
