@@ -63,7 +63,7 @@ class Bot:
 		logging.info("Initialization complete! Looking for comments...")
 		while True:
 			self._search()
-			time.sleep(1)
+			time.sleep(0.1)
 
 	def getResp(self,userName):
 		fChoice = random.randint(1, 2)
@@ -94,7 +94,7 @@ class Bot:
 
 	　　ﾟ　　　.　　　. ,　　　　.　 .
 	"""]
-		botTag = "\n---\n###### `Beep boop I'm a bot. Also I'm the imposter ok bye. Made by u/boidushya`"
+		botTag = "\n---\n^(`Beep boop I'm a bot. Also I'm the imposter ok bye. Made by u/boidushya`)"
 		return random.choice(choice)+botTag
 
 if __name__ == "__main__":
