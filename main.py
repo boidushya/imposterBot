@@ -12,6 +12,10 @@ class ModeError(Exception):
 
 class Bot:
 	def __init__(self,name="imposterBot"):
+		self.IGNORE = [
+			"botwasnotanimposter",
+			"drnhfm_bot"
+		]
 		logging.basicConfig(filename="bot.log", filemode="a", format="%(asctime)s:%(levelname)s => %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
 		self.reddit = praw.Reddit(name)
 		self.start()
@@ -46,7 +50,7 @@ class Bot:
 			body = results.body
 			body = body.lower()
 			comment_id = results.id
-			if comment_id in previous_id or results.author.name=="botwasnotanimposter":
+			if comment_id in previous_id or results.author.name in self.IGNORE:
 				return
 			userName = self._getUser(body)
 			if userName != None:
