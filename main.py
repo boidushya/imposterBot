@@ -99,7 +99,7 @@ class Bot:
 
 	　　ﾟ　　　.　　　. ,　　　　.　 .
 	"""]
-		botTag = "\n---\n^(`Beep boop I'm a bot. Also I'm the imposter ok bye. Made by u/boidushya`)"
+		botTag = "\n---\n^(Beep boop I'm a bot. Also I'm the imposter ok bye. Made by `u/boidushya`)"
 		return random.choice(choice)+botTag
 
 if __name__ == "__main__":
