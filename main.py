@@ -14,7 +14,8 @@ class Bot:
 	def __init__(self,name="imposterBot"):
 		self.IGNORE = [
 			"botwasnotanimposter",
-			"drnhfm_bot"
+			"drnhfm_bot",
+			"Mattlam57"
 		]
 		logging.basicConfig(filename="bot.log", filemode="a", format="%(asctime)s:%(levelname)s => %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
 		self.reddit = praw.Reddit(name)
