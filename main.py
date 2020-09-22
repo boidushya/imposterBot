@@ -17,6 +17,19 @@ class Bot:
 			"drnhfm_bot",
 			"Mattlam57"
 		]
+		CUSTRESP = """
+	. 　　　。　　　　•　 　ﾟ　　。 　　.
+
+	　　　.　　　 　　.　　　　　。　　 。　. 　
+
+	.　　 。　　　　　 ඞ 。 . 　　 • 　　　　•
+
+	　　ﾟ　　 u/botwasnotanimposter was ejected.　 。　.
+
+	　　'　　　 Tough luck right?　 　　。
+
+	　　ﾟ　　　.　　　. ,　　　　.　 .
+	"""
 		logging.basicConfig(filename="bot.log", filemode="a", format="%(asctime)s:%(levelname)s => %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
 		self.reddit = praw.Reddit(name)
 		self.start()
@@ -57,7 +70,10 @@ class Bot:
 			if userName != None:
 				logging.info(f"Found comment with body:\n {body}\n by {results.author.name}")
 				try:
-					results.reply(self.getResp(userName))
+					if username == "u/botwasnotanimposter":
+						result.reply(self.CUSTRESP)
+					else:
+						results.reply(self.getResp(userName))
 					self._manipC("w", comment_id)
 				except Exception as e:
 					logging.error("Exception: ", exc_info=True)
