@@ -55,10 +55,10 @@ Before starting :checkered_flag:, you need to have [Python](https://python.org) 
 
 ```bash
 # Clone this project
-$ git clone https://github.com/boidushya/imposterbot
+$ git clone https://github.com/boidushya/imposterBot
 
 # Access
-$ cd imposterbot
+$ cd imposterBot
 
 # Install dependencies
 $ pip install -r requirements.txt
