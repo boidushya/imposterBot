@@ -18,23 +18,9 @@ class Bot:
 			"Mattlam57",
 			"MODdmhfm"
 		]
-		CUSTRESP = """
-	. 　　　。　　　　•　 　ﾟ　　。 　　.
-
-	　　　.　　　 　　.　　　　　。　　 。　. 　
-
-	.　　 。　　　　　 ඞ 。 . 　　 • 　　　　•
-
-	　　ﾟ　　 u/botwasnotanimposter was ejected.　 。　.
-
-	　　'　　　 Tough luck right?　 　　。
-
-	　　ﾟ　　　.　　　. ,　　　　.　 .
-	"""
 		logging.basicConfig(filename="bot.log", filemode="a", format="%(asctime)s:%(levelname)s => %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
 		self.reddit = praw.Reddit(name)
 		self.start()
-
 	def _getUser(self,message):
 		regex = r"(?s).*(u\/[a-zA-Z0-9_-]+).*(\ssus|\svent(ed|s)?|\simpost(er|or)).*"
 		match = re.match(regex, message,re.IGNORECASE)
@@ -71,14 +57,29 @@ class Bot:
 			if userName != None:
 				logging.info(f"Found comment with body:\n {body}\n by {results.author.name}")
 				try:
-					if username == "u/botwasnotanimposter":
-						result.reply(self.CUSTRESP)
+					if userName in ["u/boidushya","u/botwasnotanimposter"] :
+						results.reply(self._getCustResp(userName))
 					else:
 						results.reply(self.getResp(userName))
 					self._manipC("w", comment_id)
 				except Exception as e:
 					logging.error("Exception: ", exc_info=True)
 					break
+
+	def _getCustResp(self,uN):
+		return f"""
+	. 　　　。　　　　•　 　ﾟ　　。 　　.
+
+	　　　.　　　 　　.　　　　　。　　 。　. 　
+
+	.　　 。　　　　　 ඞ 。 . 　　 • 　　　　•
+
+	　　ﾟ　　 {uN} was ejected.　 。　.
+
+	　　'　　　 Tough luck right?　 　　。
+
+	　　ﾟ　　　.　　　. ,　　　　.　 .
+	"""
 
 	def start(self):
 		self._manipC("i")
