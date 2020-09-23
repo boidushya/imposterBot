@@ -15,7 +15,8 @@ class Bot:
 		self.IGNORE = [
 			"botwasnotanimposter",
 			"drnhfm_bot",
-			"Mattlam57"
+			"Mattlam57",
+			"MODdmhfm"
 		]
 		CUSTRESP = """
 	. 　　　。　　　　•　 　ﾟ　　。 　　.
