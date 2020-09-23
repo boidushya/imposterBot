@@ -22,7 +22,7 @@ class Bot:
 		self.reddit = praw.Reddit(name)
 		self.start()
 	def _getUser(self,message):
-		regex = r"(?s).*(u\/[a-zA-Z0-9_-]+).*(\ssus|\svent(ed|s)?|\simpost(er|or)).*"
+		regex = r"(?s).*(u\/[a-zA-Z0-9_-]+).*(\ssus|\svent(ed|s)?\s|\simpost(er|or)).*"
 		match = re.match(regex, message,re.IGNORECASE)
 		if match != None:
 			return match.group(1)
