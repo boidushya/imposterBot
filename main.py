@@ -46,7 +46,7 @@ class Bot:
 			raise ModeError(f"Invalid mode: {mode}")
 
 	def _search(self):
-		for results in self.reddit.subreddit("all").comments():
+		for results in self.reddit.subreddit("all").stream.comments():
 			previous_id = self._manipC("r")
 			body = results.body
 			body = body.lower()
@@ -56,14 +56,16 @@ class Bot:
 			userName = self._getUser(body)
 			if userName != None:
 				logging.info(f"Found comment with body:\n {body}\n by {results.author.name}")
+				print(f"Found comment with body:\n {body}\n by {results.author.name}")
 				try:
-					if userName in ["u/boidushya","u/botwasnotanimposter"] :
+					if userName.lower() in ["u/boidushya","u/botwasnotanimposter"] :
 						results.reply(self._getCustResp(userName))
 					else:
 						results.reply(self.getResp(userName))
 					self._manipC("w", comment_id)
 				except Exception as e:
 					logging.error("Exception: ", exc_info=True)
+					print("Exception: ", exc_info=True)
 					break
 
 	def _getCustResp(self,uN):
@@ -84,6 +86,7 @@ class Bot:
 	def start(self):
 		self._manipC("i")
 		logging.info("Initialization complete! Looking for comments...")
+		print("Initialization complete! Looking for comments...")
 		while True:
 			self._search()
 			time.sleep(0.1)
@@ -117,7 +120,7 @@ class Bot:
 
 	　　ﾟ　　　.　　　. ,　　　　.　 .
 	"""]
-		botTag = "\n---\n\n^(Beep boop I'm a bot. Also I'm the imposter ok bye. Made by [u/boidushya](https://www.reddit.com/user/boidushya))"
+		botTag = "\n---\n\n^(Beep boop I'm a bot. Also I'm the imposter ok bye. Made by u/boidushya)"
 		return random.choice(choice)+botTag
 
 if __name__ == "__main__":
