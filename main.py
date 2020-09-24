@@ -46,7 +46,7 @@ class Bot:
 			raise ModeError(f"Invalid mode: {mode}")
 
 	def _search(self):
-		for results in self.reddit.subreddit("all").stream.comments():
+		for results in self.reddit.subreddit("all").comments():
 			previous_id = self._manipC("r")
 			body = results.body
 			body = body.lower()
@@ -69,6 +69,7 @@ class Bot:
 					break
 
 	def _getCustResp(self,uN):
+		botTag = "\n---\n\n^(Beep boop I'm a bot. Also I'm the imposter ok bye. Made by u/boidushya)"
 		return f"""
 	. 　　　。　　　　•　 　ﾟ　　。 　　.
 
@@ -81,7 +82,7 @@ class Bot:
 	　　'　　　 Tough luck right?　 　　。
 
 	　　ﾟ　　　.　　　. ,　　　　.　 .
-	"""
+	""" + botTag
 
 	def start(self):
 		self._manipC("i")
