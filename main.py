@@ -16,13 +16,13 @@ class Bot:
 			"botwasnotanimposter",
 			"drnhfm_bot",
 			"Mattlam57",
-			"MODdmhfm"
+			"MODdmhfm",
 		]
 		logging.basicConfig(filename="bot.log", filemode="a", format="%(asctime)s:%(levelname)s => %(message)s", datefmt="%d-%b-%y %H:%M:%S", level=logging.INFO)
 		self.reddit = praw.Reddit(name)
 		self.start()
 	def _getUser(self,message):
-		regex = r"(?s).*(u\/[a-zA-Z0-9_-]+).*(\ssus(picious)?|\svent(ed|s)?|\simpost(er|or))(\s|\.|,|\?|!).*"
+		regex = r"(?s).*\b(u\/[a-zA-Z0-9_-]+).*(\ssus(picious)?|\svent(ed|s)?|\simpost(er|or))(\s|\.|,|\?|!).*"
 		match = re.match(regex, message,re.IGNORECASE)
 		if match != None:
 			return match.group(1)
