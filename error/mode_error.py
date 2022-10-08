@@ -1,0 +1,2 @@
+class ModeError(Exception):
+    pass
